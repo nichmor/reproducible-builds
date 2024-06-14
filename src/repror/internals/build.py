@@ -90,6 +90,10 @@ def build_recipe(
 ) -> BuildResult:
     """Build a single recipe"""
 
+    # clean output_dir
+    if output_dir.exists():
+        shutil.rmtree(output_dir)
+
     # bypass exception on top
     try:
         build_conda_package(recipe.path, output_dir)
