@@ -126,11 +126,11 @@ jobs:
   build-and-rebuild-recipes:
     needs: [generate-recipes, handle-workflow-dispatch]
     name: ${{ matrix.recipe_name }}-${{ matrix.os }}
-    if: fromJson(needs.generate-recipes.outputs.recipe || needs.handle-workflow-dispatch.outputs.recipe)[0] != null
+    # if: fromJson(needs.handle-workflow-dispatch.outputs.recipe)[0] != null
     continue-on-error: true
     strategy:
       matrix:
-        recipe_name: ${{ fromJson(needs.generate-recipes.outputs.recipe || needs.handle-workflow-dispatch.outputs.recipe) }}
+        recipe_name: ${{ fromJson(needs.handle-workflow-dispatch.outputs.recipe) }}
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
