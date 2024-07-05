@@ -124,7 +124,7 @@ jobs:
         run: echo "recipes=${{ github.event.inputs.recipes }}" >> "$GITHUB_OUTPUT"
 
   build-and-rebuild-recipes:
-    needs: [generate-recipes, handle-workflow-dispatch]
+    needs: [handle-workflow-dispatch]
     name: ${{ matrix.recipe_name }}-${{ matrix.os }}
     # if: fromJson(needs.handle-workflow-dispatch.outputs.recipe)[0] != null
     continue-on-error: true
